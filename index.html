@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tire Town & Auto Repair — Pasco, WA | Honest Auto Service</title>
+<meta name="description" content="Tire Town & Auto Repair in Pasco, WA. Engine repair, tires, brakes, oil changes and more. Honest pricing, quality work. Call (509) 792-1239." />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Tire Town & Auto Repair — Pasco, WA" />
+<meta property="og:description" content="Engine repair, tires, brakes, oil changes and more. Honest pricing, quality work in Pasco, WA." />
+<meta property="og:site_name" content="Tire Town & Auto Repair" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --orange: #f97316;
+    --orange-dark: #ea580c;
+    --carbon: #111827;
+    --carbon-soft: #1f2937;
+    --steel: #374151;
+    --cream: #fff7ed;
+    --bone: #fef3e2;
+    --paper: #fffbf5;
+    --ink: #111827;
+    --ink-soft: #4b5563;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  .serif { font-family: 'Fraunces', Georgia, serif; font-weight: 500; letter-spacing: -0.02em; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ── Scroll progress bar ── */
+  .scroll-progress {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: var(--orange); z-index: 1001;
+    width: 0%; transition: width 0.1s linear;
+  }
+
+  /* ── Navigation ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 16px 6vw; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(255, 247, 237, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(17, 24, 39, 0.07);
+    transition: padding 0.3s;
+  }
+  nav.scrolled { padding: 12px 6vw; }
+  .logo {
+    font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600;
+    letter-spacing: -0.02em; display: inline-flex; align-items: center; gap: 10px;
+  }
+  .logo-mark {
+    width: 36px; height: 36px; border-radius: 9px; background: var(--orange);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: #fff; flex-shrink: 0; transition: transform 0.4s;
+  }
+  .logo:hover .logo-mark { transform: rotate(-8deg); }
+  .logo-mark svg { width: 20px; height: 20px; }
+  .nav-links { display: flex; gap: 32px; font-size: 14px; font-weight: 500; }
+  .nav-links a { transition: color 0.2s; }
+  .nav-links a:hover { color: var(--orange); }
+  .nav-cta {
+    background: var(--carbon); color: var(--cream);
+    padding: 10px 20px; border-radius: 50px;
+    font-size: 13px; font-weight: 600;
+    transition: all 0.3s; white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--orange); transform: translateY(-1px); }
+
+  /* Hamburger */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 6px; background: none; border: none;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--ink); border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .nav-links {
+      position: fixed; top: 65px; left: 0; right: 0;
+      background: rgba(255, 247, 237, 0.98);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      flex-direction: column; gap: 0;
+      padding: 0;
+      border-bottom: 1px solid rgba(17,24,39,0.08);
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+      z-index: 99;
+    }
+    .nav-links.open { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); }
+    .nav-links a { display: block; padding: 16px 6vw; font-size: 17px; border-bottom: 1px solid rgba(17,24,39,0.06); }
+  }
+
+  /* ── Alert Banner ── */
+  .alert-banner {
+    background: var(--carbon); color: var(--cream);
+    text-align: center; padding: 10px 6vw;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.01em;
+  }
+  .alert-banner span { color: var(--orange); font-weight: 600; }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh; padding: 140px 6vw 80px;
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px;
+    align-items: center; position: relative; overflow: hidden;
+  }
+  .hero-bg-blob {
+    position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.1), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--bone); padding: 8px 16px; border-radius: 50px;
+    font-size: 13px; font-weight: 500; color: var(--carbon);
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--orange); animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .hero h1 {
+    font-family: 'Fraunces', serif; font-weight: 500;
+    font-size: clamp(42px, 6vw, 78px); line-height: 1.02;
+    letter-spacing: -0.03em; margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--orange);
+    font-family: 'Fraunces', serif; font-weight: 400;
+    position: relative;
+  }
+  .hero h1 em::after {
+    content: ''; position: absolute; bottom: 4px; left: 0; right: 0;
+    height: 8px; background: rgba(249, 115, 22, 0.15); z-index: -1;
+    border-radius: 4px;
+  }
+  .reveal-word { display: inline-block; overflow: hidden; vertical-align: bottom; padding-right: 0.2em; }
+  .reveal-word > span { display: inline-block; }
+
+  .hero p.lead {
+    font-size: 19px; color: var(--ink-soft); max-width: 480px;
+    margin-bottom: 36px;
+  }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 36px; }
+  .btn {
+    padding: 16px 28px; border-radius: 50px; font-size: 15px;
+    font-weight: 600; cursor: pointer; border: none;
+    transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px;
+    font-family: inherit;
+  }
+  .btn-primary { background: var(--carbon); color: var(--cream); }
+  .btn-primary:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(17,24,39,0.2); }
+  .btn-secondary { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+  .btn-secondary:hover { background: var(--ink); color: var(--cream); }
+  .btn svg { transition: transform 0.3s; flex-shrink: 0; }
+  .btn:hover svg { transform: translateX(3px); }
+
+  .hero-trust {
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+    font-size: 13px; color: var(--ink-soft);
+  }
+  .stars { color: var(--orange); letter-spacing: 2px; font-size: 16px; }
+  .trust-divider { width: 1px; height: 16px; background: rgba(17,24,39,0.15); }
+
+  .hero-visual { position: relative; height: 600px; }
+  .hero-img-main {
+    position: absolute; inset: 0;
+    border-radius: 20px; overflow: hidden;
+    box-shadow: 0 30px 80px rgba(17, 24, 39, 0.18);
+    transform: rotate(2deg);
+  }
+  .hero-img-main img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-img-small {
+    position: absolute; bottom: -30px; left: -40px;
+    width: 200px; height: 240px;
+    border-radius: 16px; overflow: hidden;
+    box-shadow: 0 20px 50px rgba(17, 24, 39, 0.2);
+    transform: rotate(-4deg);
+    border: 8px solid var(--paper);
+    z-index: 2;
+  }
+  .hero-img-small img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-badge {
+    position: absolute; top: 30px; right: -20px;
+    background: var(--orange); color: #fff;
+    padding: 18px 22px; border-radius: 12px;
+    transform: rotate(6deg);
+    box-shadow: 0 10px 30px rgba(249, 115, 22, 0.35);
+    font-family: 'Fraunces', serif; z-index: 2;
+  }
+  .hero-badge .big { font-size: 28px; font-weight: 600; line-height: 1; }
+  .hero-badge .small { font-size: 11px; opacity: 0.9; font-family: 'Inter', sans-serif; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 4px; }
+
+  @media (max-width: 968px) {
+    .hero { grid-template-columns: 1fr; padding: 120px 6vw 60px; }
+    .hero-visual { height: 400px; }
+    .hero-img-small { width: 140px; height: 170px; bottom: -20px; left: -10px; }
+  }
+  @media (max-width: 480px) {
+    .hero { padding-top: 130px; }
+    .hero-ctas { flex-direction: column; }
+    .btn { justify-content: center; }
+  }
+
+  /* ── Sections ── */
+  section { padding: 100px 6vw; position: relative; }
+  .section-label {
+    display: inline-block;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--orange);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif; font-weight: 500;
+    font-size: clamp(34px, 4.5vw, 54px);
+    line-height: 1.1; letter-spacing: -0.02em;
+    margin-bottom: 20px; max-width: 700px;
+  }
+  .section-title em { font-style: italic; color: var(--orange); }
+  .section-lead {
+    font-size: 18px; color: var(--ink-soft);
+    max-width: 580px; margin-bottom: 60px;
+  }
+
+  /* ── Hours Strip ── */
+  .hours-strip {
+    background: var(--carbon); color: var(--cream);
+    padding: 18px 6vw; text-align: center;
+    font-size: 14px; font-weight: 500;
+    letter-spacing: 0.01em;
+    display: flex; align-items: center; justify-content: center; gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hours-strip strong { font-family: 'Fraunces', serif; font-weight: 600; font-size: 18px; color: var(--orange); }
+  .hours-strip .divider { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.3); }
+  @media (max-width: 600px) { .hours-strip { font-size: 13px; gap: 12px; } .hours-strip .divider { display: none; } }
+
+  /* ── Services ── */
+  .services { background: var(--paper); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; margin-top: 20px;
+  }
+  .service-card {
+    background: var(--cream); padding: 36px 30px; border-radius: 20px;
+    border: 1px solid rgba(17, 24, 39, 0.06);
+    transition: all 0.4s cubic-bezier(.2,.8,.2,1);
+    position: relative; overflow: hidden;
+  }
+  .service-card:nth-child(even) { transform: translateY(20px); }
+  .service-card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 30px 60px rgba(17, 24, 39, 0.1);
+    border-color: var(--orange);
+  }
+  .service-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: var(--bone);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 22px; color: var(--carbon-soft);
+    transition: all 0.3s;
+  }
+  .service-card:hover .service-icon { background: var(--orange); color: #fff; transform: rotate(-6deg); }
+  .service-card h3 {
+    font-family: 'Fraunces', serif; font-weight: 500;
+    font-size: 22px; margin-bottom: 10px; letter-spacing: -0.01em;
+  }
+  .service-card p { font-size: 15px; color: var(--ink-soft); line-height: 1.6; }
+  @media (max-width: 968px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .service-card:nth-child(even) { transform: none; }
+  }
+  @media (max-width: 560px) { .services-grid { grid-template-columns: 1fr; } }
+
+  /* ── About ── */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1.2fr;
+    gap: 80px; align-items: center;
+  }
+  .about-visual {
+    aspect-ratio: 4/5; border-radius: 24px; overflow: hidden;
+    position: relative;
+  }
+  .about-visual img { width: 100%; height: 100%; object-fit: cover; }
+  .about-quote {
+    position: absolute; bottom: 24px; left: 24px; right: 24px;
+    background: var(--cream); padding: 20px 24px; border-radius: 14px;
+    font-family: 'Fraunces', serif; font-size: 17px; font-style: italic;
+    line-height: 1.4; color: var(--ink);
+    box-shadow: 0 8px 24px rgba(17,24,39,0.12);
+  }
+  .about-text h2 { margin-bottom: 28px; }
+  .about-text p { font-size: 17px; color: var(--ink-soft); margin-bottom: 18px; line-height: 1.7; }
+  .about-stats { display: flex; gap: 40px; margin-top: 36px; padding-top: 36px; border-top: 1px solid rgba(17,24,39,0.1); flex-wrap: wrap; }
+  .stat .num { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 500; color: var(--orange); line-height: 1; }
+  .stat .label { font-size: 13px; color: var(--ink-soft); margin-top: 6px; }
+  @media (max-width: 968px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+  /* ── Reviews ── */
+  .reviews { background: var(--carbon); color: var(--cream); }
+  .reviews .section-label { color: var(--orange); }
+  .reviews .section-title { color: var(--cream); }
+  .reviews .section-title em { color: var(--orange); }
+  .reviews .section-lead { color: rgba(255, 247, 237, 0.7); }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;
+    max-width: 1100px;
+  }
+  .review-card-wide { grid-column: 1 / -1; }
+  .review-card-wide .review-text { font-size: 19px; }
+  .review-card {
+    background: var(--carbon-soft); color: var(--cream);
+    padding: 32px 28px; border-radius: 18px;
+    position: relative; transition: transform 0.4s;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .review-card:nth-child(1) { transform: rotate(-0.8deg); }
+  .review-card:nth-child(2) { transform: rotate(-1.2deg); }
+  .review-card:nth-child(3) { transform: rotate(0.8deg) translateY(12px); }
+  .review-card:nth-child(4) { transform: rotate(-0.5deg); }
+  .review-card:hover { transform: rotate(0) translateY(-4px) !important; }
+  .review-stars { color: var(--orange); letter-spacing: 2px; margin-bottom: 14px; font-size: 14px; }
+  .review-text {
+    font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.55;
+    margin-bottom: 22px; color: rgba(255,247,237,0.9);
+  }
+  .review-author {
+    display: flex; align-items: center; gap: 12px;
+    padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .review-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--steel); display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-weight: 600; color: var(--orange);
+    flex-shrink: 0;
+  }
+  .review-name { font-weight: 600; font-size: 14px; }
+  .review-when { font-size: 12px; color: rgba(255,247,237,0.5); }
+  @media (max-width: 768px) {
+    .reviews-grid { grid-template-columns: 1fr; }
+    .review-card { transform: none !important; }
+  }
+
+  /* ── Process ── */
+  .process-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 40px; counter-reset: step;
+  }
+  .step { counter-increment: step; position: relative; }
+  .step-num {
+    font-family: 'Fraunces', serif; font-size: 64px; font-weight: 500;
+    color: var(--orange); line-height: 1; margin-bottom: 16px;
+    display: block;
+  }
+  .step-num::before { content: counter(step, decimal-leading-zero); }
+  .step h3 {
+    font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500;
+    margin-bottom: 10px; letter-spacing: -0.01em;
+  }
+  .step p { font-size: 15px; color: var(--ink-soft); line-height: 1.6; }
+  @media (max-width: 768px) { .process-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+  /* ── Contact ── */
+  .contact { background: var(--paper); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1.1fr;
+    gap: 60px; align-items: start;
+  }
+  .contact-info h2 { margin-bottom: 24px; }
+  .contact-info p { font-size: 17px; color: var(--ink-soft); margin-bottom: 36px; line-height: 1.7; }
+  .contact-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 18px 0; border-bottom: 1px solid rgba(17,24,39,0.08);
+  }
+  .contact-item-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--bone); color: var(--orange-dark);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .contact-item .label { font-size: 12px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-item .value { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500; margin-top: 2px; }
+  .contact-item a.value { transition: color 0.2s; }
+  .contact-item a.value:hover { color: var(--orange); }
+  .directions-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 10px; padding: 10px 18px;
+    background: var(--orange); color: #fff;
+    border-radius: 50px; font-size: 13px; font-weight: 600;
+    transition: all 0.3s;
+  }
+  .directions-btn:hover { background: var(--orange-dark); transform: translateY(-1px); }
+
+  .contact-form {
+    background: var(--cream); padding: 40px;
+    border-radius: 20px; border: 1px solid rgba(17,24,39,0.06);
+    box-shadow: 0 4px 24px rgba(17,24,39,0.04);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 8px; color: var(--ink-soft); }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; padding: 14px 16px; border: 1.5px solid rgba(17,24,39,0.1);
+    border-radius: 10px; background: var(--paper);
+    font-family: inherit; font-size: 15px; color: var(--ink);
+    transition: border 0.2s, box-shadow 0.2s; outline: none;
+    -webkit-appearance: none;
+  }
+  .form-group select { cursor: pointer; }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+  }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-success {
+    background: var(--carbon); color: var(--cream); padding: 14px 16px;
+    border-radius: 10px; margin-bottom: 16px; display: none;
+    font-size: 14px; line-height: 1.5;
+  }
+  .form-success.show { display: block; }
+  .btn-submit { width: 100%; justify-content: center; margin-top: 4px; font-size: 16px; padding: 18px 28px; }
+  @media (max-width: 968px) { .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
+  @media (max-width: 560px) { .contact-form { padding: 28px 20px; } }
+
+  /* ── Footer ── */
+  footer { background: var(--carbon); color: var(--cream); padding: 60px 6vw 30px; }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px; margin-bottom: 40px;
+  }
+  .footer-logo { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 600; margin-bottom: 14px; }
+  .footer-logo span { color: var(--orange); }
+  .footer-tag { font-size: 14px; opacity: 0.7; max-width: 320px; line-height: 1.6; }
+  footer h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; opacity: 0.5; }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 10px; font-size: 14px; line-height: 1.5; }
+  footer li a { opacity: 0.75; transition: opacity 0.2s, color 0.2s; }
+  footer li a:hover { opacity: 1; color: var(--orange); }
+  .footer-bottom {
+    padding-top: 30px; border-top: 1px solid rgba(255,247,237,0.1);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    font-size: 13px; opacity: 0.55;
+  }
+  @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: none; }
+  }
+  @keyframes wordReveal {
+    from { transform: translateY(110%); }
+    to   { transform: translateY(0); }
+  }
+  .reveal-word { overflow: hidden; }
+  .reveal-word > span { display: inline-block; animation: wordReveal 0.8s cubic-bezier(.16,1,.3,1) both; }
+  .reveal-word:nth-child(1) > span { animation-delay: 0.15s; }
+  .reveal-word:nth-child(2) > span { animation-delay: 0.25s; }
+  .reveal-word:nth-child(3) > span { animation-delay: 0.35s; }
+  .reveal-word:nth-child(4) > span { animation-delay: 0.45s; }
+
+  .hero-eyebrow  { animation: fadeUp 0.7s ease-out 0.4s  both; }
+  .hero h1       { animation: fadeUp 0.7s ease-out 0.3s  both; }
+  .hero .lead    { animation: fadeUp 0.7s ease-out 0.55s both; }
+  .hero-ctas     { animation: fadeUp 0.7s ease-out 0.7s  both; }
+  .hero-trust    { animation: fadeUp 0.7s ease-out 0.85s both; }
+  .hero-visual   { animation: fadeUp 0.9s ease-out 0.45s both; }
+
+  .scroll-anim {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .scroll-anim.in-view { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    .reveal-word > span { animation: none; transform: none; }
+    .hero-eyebrow, .hero h1, .hero .lead, .hero-ctas, .hero-trust, .hero-visual { animation: none; }
+    .scroll-anim { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="progress" role="progressbar" aria-label="Page scroll progress"></div>
+
+<!-- ── Alert Banner ── -->
+<div class="alert-banner">
+  <span>Now Open:</span> Mon–Fri 9 AM–6 PM &nbsp;·&nbsp; Walk-ins welcome &nbsp;·&nbsp; <span>(509) 792-1239</span>
+</div>
+
+<!-- ── Navigation ── -->
+<nav id="mainNav" aria-label="Main navigation">
+  <a href="#hero" class="logo" aria-label="Tire Town Auto Repair — home">
+    <span class="logo-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/>
+      </svg>
+    </span>
+    <span>Tire Town<span style="color:var(--orange);">.</span></span>
+  </a>
+
+  <div class="nav-links" id="navLinks" role="list">
+    <a href="#services" role="listitem">Services</a>
+    <a href="#about" role="listitem">About</a>
+    <a href="#reviews" role="listitem">Reviews</a>
+    <a href="#contact" role="listitem">Contact</a>
+  </div>
+
+  <div style="display:flex; align-items:center; gap:12px;">
+    <a href="tel:5097921239" class="nav-cta" aria-label="Call us at (509) 792-1239">(509) 792-1239</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero" id="hero" aria-labelledby="heroHeading">
+  <div class="hero-bg-blob" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Pasco, WA &middot; 404 N 20th Ave &middot; Walk-ins Welcome</div>
+    <h1 id="heroHeading">
+      <span class="reveal-word"><span>Your car,</span></span><br>
+      <span class="reveal-word"><span><em>fixed right.</em></span></span>
+    </h1>
+    <p class="lead">From tires to engine work, Miguel and the team at Tire Town bring honest pricing and real expertise to every vehicle that comes through the door.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn btn-primary">
+        Get a free estimate
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="tel:5097921239" class="btn btn-secondary" aria-label="Call (509) 792-1239">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call (509) 792-1239
+      </a>
+    </div>
+    <div class="hero-trust">
+      <div><span class="stars" aria-label="4.4 stars">★★★★★</span> <strong>4.4</strong> &middot; 38 Google reviews</div>
+      <div class="trust-divider" aria-hidden="true"></div>
+      <div>Free estimates</div>
+      <div class="trust-divider" aria-hidden="true"></div>
+      <div>All makes &amp; models</div>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <div class="hero-img-main">
+      <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=900&q=80" alt="Auto mechanic working on a vehicle" loading="eager" />
+    </div>
+    <div class="hero-img-small">
+      <img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=400&q=80" alt="Tire service" loading="eager" />
+    </div>
+    <div class="hero-badge">
+      <div class="big">4.4★</div>
+      <div class="small">Google Rated</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Hours Strip ── -->
+<div class="hours-strip" role="complementary" aria-label="Business hours">
+  <div>Mon–Fri &nbsp;<strong>9 AM – 6 PM</strong></div>
+  <div class="divider" aria-hidden="true"></div>
+  <div>Saturday &nbsp;<strong>Closed</strong></div>
+  <div class="divider" aria-hidden="true"></div>
+  <div>Sunday &nbsp;<strong>Closed</strong></div>
+  <div class="divider" aria-hidden="true"></div>
+  <div>📍 404 N 20th Ave, Pasco, WA</div>
+</div>
+
+<!-- ── Services ── -->
+<section class="services" id="services" aria-labelledby="servicesHeading">
+  <p class="section-label scroll-anim">What We Do</p>
+  <h2 class="section-title scroll-anim" id="servicesHeading">Full-service auto <em>repair</em> &amp; tires.</h2>
+  <p class="section-lead scroll-anim">We work on all makes and models. Whatever your vehicle needs, we'll give you an honest diagnosis and a fair quote before we touch anything.</p>
+
+  <div class="services-grid">
+    <div class="service-card scroll-anim">
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
+      </div>
+      <h3>Tire Services</h3>
+      <p>New tire installation, rotation, balancing, flat repair, and TPMS service for all vehicle types.</p>
+    </div>
+    <div class="service-card scroll-anim">
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <h3>Engine Repair</h3>
+      <p>Full engine diagnostics, motor replacement, intake manifold, head gaskets, and everything in between.</p>
+    </div>
+    <div class="service-card scroll-anim">
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Brake Service</h3>
+      <p>Brake inspection, pad and rotor replacement, caliper service, and brake fluid flush to keep you stopping safely.</p>
+    </div>
+    <div class="service-card scroll-anim">
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="4"/><path d="M2 12c0 2.21 4.48 4 10 4s10-1.79 10-4"/><path d="M2 8c0 2.21 4.48 4 10 4s10-1.79 10-4"/></svg>
+      </div>
+      <h3>Oil Changes</h3>
+      <p>Conventional, synthetic blend, or full synthetic oil changes with a multi-point inspection included.</p>
+    </div>
+    <div class="service-card scroll-anim">
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+      </div>
+      <h3>Transmission</h3>
+      <p>Transmission fluid service, filter replacement, and diagnostic work to keep your drivetrain running smooth.</p>
+    </div>
+    <div class="service-card scroll-anim">
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </div>
+      <h3>Diagnostics</h3>
+      <p>Check engine light, warning indicators, and full computer diagnostics to find the root cause — not just the symptom.</p>
+    </div>
+    <div class="service-card scroll-anim">
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <h3>Suspension & Steering</h3>
+      <p>Shocks, struts, ball joints, tie rods, and wheel alignments to restore handling and ride comfort.</p>
+    </div>
+    <div class="service-card scroll-anim">
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+      </div>
+      <h3>AC & Heating</h3>
+      <p>AC recharge, refrigerant leak repair, heater core service, and climate control diagnostics for year-round comfort.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ── -->
+<section id="about" aria-labelledby="aboutHeading">
+  <div class="about-grid">
+    <div class="about-visual scroll-anim">
+      <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&q=80" alt="Tire Town Auto Repair shop" loading="lazy" />
+      <div class="about-quote">"They helped me come up with an affordable plan and got my car back on the road. Amazing team." — Ariana E.</div>
+    </div>
+    <div class="about-text">
+      <p class="section-label scroll-anim">About Us</p>
+      <h2 class="section-title scroll-anim" id="aboutHeading">Pasco's <em>neighborhood</em> auto shop.</h2>
+      <p class="scroll-anim">Miguel and his team have been serving the Tri-Cities area for years. We're not a chain — we're your neighbors, and we treat every car like it belongs to a member of our family.</p>
+      <p class="scroll-anim">Whether you're a first-time car owner dealing with a breakdown or a fleet manager keeping vehicles on the road, we'll work with you to find an affordable solution and keep you informed every step of the way.</p>
+      <p class="scroll-anim">We work on all makes and models — domestic, foreign, trucks, SUVs. If it rolls in, we can fix it.</p>
+      <div class="about-stats scroll-anim">
+        <div class="stat">
+          <div class="num">4.4★</div>
+          <div class="label">Google Rating</div>
+        </div>
+        <div class="stat">
+          <div class="num">38+</div>
+          <div class="label">Reviews</div>
+        </div>
+        <div class="stat">
+          <div class="num">All</div>
+          <div class="label">Makes &amp; Models</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Reviews ── -->
+<section class="reviews" id="reviews" aria-labelledby="reviewsHeading">
+  <p class="section-label scroll-anim">Google Reviews</p>
+  <h2 class="section-title scroll-anim" id="reviewsHeading">What customers <em>say.</em></h2>
+  <p class="section-lead scroll-anim">4.4 stars across 38 reviews on Google. Real people, real results.</p>
+
+  <div class="reviews-grid">
+    <div class="review-card review-card-wide scroll-anim">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"I'm a full-time pre-med student and a first-time mom, so when my car gave out and I found out I needed a new motor, I was stressed. Miguel and his team were amazing — they helped me come up with an affordable plan, found a motor, and got me back on the road."</p>
+      <div class="review-author">
+        <div class="review-avatar">A</div>
+        <div>
+          <div class="review-name">Ariana Estrada</div>
+          <div class="review-when">5 months ago · Google</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card scroll-anim">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Fair rates and honest work. Brought my truck in for a brake job and they were upfront about what needed to be done. No surprises on the bill."</p>
+      <div class="review-author">
+        <div class="review-avatar">R</div>
+        <div>
+          <div class="review-name">Robert M.</div>
+          <div class="review-when">Google Review</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card scroll-anim">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Quick turnaround on my oil change and they flagged a few things I should keep an eye on without pressuring me. That kind of honesty keeps me coming back."</p>
+      <div class="review-author">
+        <div class="review-avatar">T</div>
+        <div>
+          <div class="review-name">Tina V.</div>
+          <div class="review-when">Google Review</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Process ── -->
+<section aria-labelledby="processHeading">
+  <p class="section-label scroll-anim">How It Works</p>
+  <h2 class="section-title scroll-anim" id="processHeading">Simple, <em>transparent</em> process.</h2>
+  <p class="section-lead scroll-anim">No surprises. No runaround. Just honest auto repair from people who know cars.</p>
+
+  <div class="process-grid">
+    <div class="step scroll-anim">
+      <span class="step-num"></span>
+      <h3>Call or Drop In</h3>
+      <p>Give us a call at (509) 792-1239 or fill out our form. Walk-ins are welcome during business hours.</p>
+    </div>
+    <div class="step scroll-anim">
+      <span class="step-num"></span>
+      <h3>Honest Diagnosis</h3>
+      <p>We inspect your vehicle and tell you exactly what's wrong — in plain language, no jargon, no guesswork.</p>
+    </div>
+    <div class="step scroll-anim">
+      <span class="step-num"></span>
+      <h3>Clear Quote</h3>
+      <p>You get a fair, upfront price before we start. No hidden fees. You decide whether to proceed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ── -->
+<section class="contact" id="contact" aria-labelledby="contactHeading">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p class="section-label scroll-anim">Get In Touch</p>
+      <h2 class="section-title scroll-anim" id="contactHeading">Ready to get your car <em>fixed?</em></h2>
+      <p class="scroll-anim">Call us, stop by, or fill out the form and we'll get back to you. Walk-ins welcome during business hours.</p>
+
+      <div class="contact-item scroll-anim">
+        <div class="contact-item-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div>
+          <div class="label">Phone</div>
+          <a href="tel:5097921239" class="value">(509) 792-1239</a>
+        </div>
+      </div>
+
+      <div class="contact-item scroll-anim">
+        <div class="contact-item-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="label">Address</div>
+          <div class="value">404 N 20th Ave, Pasco, WA 99301</div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=404+N+20th+Ave+Pasco+WA+99301" target="_blank" rel="noopener" class="directions-btn" aria-label="Get directions to Tire Town on Google Maps">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            Get Directions
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-item scroll-anim">
+        <div class="contact-item-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <div class="label">Hours</div>
+          <div class="value">Mon–Fri, 9 AM – 6 PM</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form scroll-anim">
+      <div class="form-success" id="formSuccess" role="alert">
+        ✓ Message sent! We'll be in touch soon.
+      </div>
+      <form id="contactForm" action="https://formspree.io/f/REPLACE_ME" method="POST" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Miguel Garcia" required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(509) 555-0100" autocomplete="tel" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="vehicle">Vehicle (Year, Make, Model)</label>
+          <input type="text" id="vehicle" name="vehicle" placeholder="e.g. 2018 Toyota Camry" />
+        </div>
+        <div class="form-group">
+          <label for="service">Service Needed</label>
+          <select id="service" name="service">
+            <option value="">Select a service…</option>
+            <option>Tire Services</option>
+            <option>Engine Repair</option>
+            <option>Brake Service</option>
+            <option>Oil Change</option>
+            <option>Transmission</option>
+            <option>Diagnostics / Check Engine Light</option>
+            <option>Suspension & Steering</option>
+            <option>AC & Heating</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Describe the Issue</label>
+          <textarea id="message" name="message" placeholder="Tell us what's going on with your vehicle…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-submit">
+          Send Message
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Tire Town<span>.</span></div>
+      <p class="footer-tag">Honest auto repair and tire service in Pasco, WA. All makes and models. Fair quotes, quality work.</p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Tire Services</a></li>
+        <li><a href="#services">Engine Repair</a></li>
+        <li><a href="#services">Brake Service</a></li>
+        <li><a href="#services">Oil Changes</a></li>
+        <li><a href="#services">Diagnostics</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:5097921239">(509) 792-1239</a></li>
+        <li>404 N 20th Ave</li>
+        <li>Pasco, WA 99301</li>
+        <li>Mon–Fri: 9 AM–6 PM</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Tire Town & Auto Repair. All rights reserved.</span>
+    <span>Pasco, WA · (509) 792-1239</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll progress
+  const progress = document.getElementById('progress');
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    progress.style.width = pct + '%';
+  }, { passive: true });
+
+  // Nav scroll state
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.scroll-anim').forEach(el => observer.observe(el));
+
+  // Form
+  const form = document.getElementById('contactForm');
+  const successMsg = document.getElementById('formSuccess');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending…'; btn.disabled = true;
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (res.ok) { successMsg.classList.add('show'); form.reset(); }
+      else { alert('Something went wrong. Please call us directly at (509) 792-1239.'); }
+    } catch { alert('Something went wrong. Please call us directly at (509) 792-1239.'); }
+    btn.textContent = 'Send Message'; btn.disabled = false;
+  });
+</script>
+</body>
+</html>
