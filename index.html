@@ -17,6 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
 <style>
   :root {
@@ -67,13 +68,7 @@
     font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600;
     letter-spacing: -0.02em; display: inline-flex; align-items: center; gap: 10px;
   }
-  .logo-mark {
-    width: 36px; height: 36px; border-radius: 9px; background: var(--orange);
-    display: inline-flex; align-items: center; justify-content: center;
-    color: #fff; flex-shrink: 0; transition: transform 0.4s;
-  }
-  .logo:hover .logo-mark { transform: rotate(-8deg); }
-  .logo-mark svg { width: 20px; height: 20px; }
+
   .nav-links { display: flex; gap: 32px; font-size: 14px; font-weight: 500; }
   .nav-links a { transition: color 0.2s; }
   .nav-links a:hover { color: var(--orange); }
@@ -421,17 +416,21 @@
   .directions-btn:hover { background: var(--orange-dark); transform: translateY(-1px); }
 
   .maps-cta {
-    display: flex; align-items: center; gap: 16px;
-    margin-top: 28px; padding: 20px 24px;
+    display: flex; align-items: stretch;
+    margin-top: 28px;
     background: var(--carbon); color: var(--cream);
     border-radius: 16px; font-size: 15px;
-    transition: all 0.3s;
+    transition: all 0.3s; overflow: hidden;
   }
   .maps-cta:hover { background: var(--orange); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(249,115,22,0.25); }
-  .maps-cta > svg:first-child { flex-shrink: 0; opacity: 0.9; }
-  .maps-cta span { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+  .maps-cta-info { display: flex; align-items: center; gap: 16px; padding: 20px 24px; flex: 1; }
+  .maps-cta-info > svg:first-child { flex-shrink: 0; opacity: 0.9; }
+  .maps-cta-info > span { flex: 1; display: flex; flex-direction: column; gap: 2px; }
   .maps-cta strong { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500; }
   .maps-cta small { font-size: 13px; opacity: 0.65; }
+  .maps-cta-preview { width: 150px; flex-shrink: 0; overflow: hidden; border-radius: 0 16px 16px 0; }
+  #mapsCtaMap { width: 100%; height: 100%; min-height: 110px; pointer-events: none; }
+  @media (max-width: 480px) { .maps-cta-preview { display: none; } }
 
   .contact-form {
     background: var(--cream); padding: 40px;
@@ -468,6 +467,16 @@
   .btn-submit { width: 100%; justify-content: center; margin-top: 4px; font-size: 16px; padding: 18px 28px; }
   @media (max-width: 968px) { .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
   @media (max-width: 560px) { .contact-form { padding: 28px 20px; } }
+
+  /* ── Map Embed ── */
+  .map-embed {
+    margin-top: 48px; border-radius: 20px; overflow: hidden;
+    box-shadow: 0 8px 32px rgba(17,24,39,0.1);
+    border: 1px solid rgba(17,24,39,0.08);
+    height: 380px;
+  }
+  .map-embed iframe { width: 100%; height: 100%; display: block; border: 0; }
+  @media (max-width: 968px) { .map-embed { height: 280px; } }
 
   /* ── Footer ── */
   footer { background: var(--carbon); color: var(--cream); padding: 60px 6vw 30px; }
@@ -548,11 +557,6 @@
 <!-- ── Navigation ── -->
 <nav id="mainNav" aria-label="Main navigation">
   <a href="#hero" class="logo" aria-label="Tire Town Auto Repair — home">
-    <span class="logo-mark" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/>
-      </svg>
-    </span>
     <span>Tire Town<span style="color:var(--orange);">.</span></span>
   </a>
 
@@ -695,7 +699,7 @@
 <section id="about" aria-labelledby="aboutHeading">
   <div class="about-grid">
     <div class="about-visual scroll-anim from-left">
-      <img src="https://images.unsplash.com/photo-1632823471565-1ecdf5c6da22?w=800&q=80" alt="Mechanic working under a car on a lift" loading="lazy" />
+      <img src="https://images.unsplash.com/photo-1614026480209-cd9934144671?w=800&q=80" alt="Mechanic working under a car on a lift" loading="lazy" />
       <div class="about-quote">"They helped me come up with an affordable plan and got my car back on the road. Amazing team." — Ariana E.</div>
     </div>
     <div class="about-text">
@@ -833,12 +837,17 @@
       </div>
 
       <a href="https://www.google.com/maps/search/?api=1&query=Tire+Town+Auto+Repair+404+N+20th+Ave+Pasco+WA+99301" target="_blank" rel="noopener" class="maps-cta scroll-anim" aria-label="Open Tire Town location in Google Maps">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <span>
-          <strong>Open in Google Maps</strong>
-          <small>404 N 20th Ave · Pasco, WA 99301</small>
-        </span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        <div class="maps-cta-info">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>
+            <strong>Open in Google Maps</strong>
+            <small>404 N 20th Ave · Pasco, WA 99301</small>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </div>
+        <div class="maps-cta-preview" aria-hidden="true">
+          <div id="mapsCtaMap"></div>
+        </div>
       </a>
     </div>
 
@@ -887,6 +896,17 @@
       </form>
     </div>
   </div>
+
+  <div class="map-embed scroll-anim">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2873.08!2d-119.1176369!3d46.2325958!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54987ec9196ab8d5%3A0xd712a19a6501507d!2sTire+Town+And+Auto+Repair!5e0!3m2!1sen!2sus!4v1716000000000!5m2!1sen!2sus"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Tire Town And Auto Repair on Google Maps"
+      aria-label="Google Maps showing Tire Town And Auto Repair at 404 N 20th Ave, Pasco, WA"
+    ></iframe>
+  </div>
 </section>
 
 <!-- ── Footer ── -->
@@ -922,6 +942,7 @@
   </div>
 </footer>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
   // Scroll progress
   const progress = document.getElementById('progress');
@@ -957,6 +978,21 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); } });
   }, { threshold: 0.05 });
   document.querySelectorAll('.scroll-anim').forEach(el => observer.observe(el));
+
+  // Map preview in maps-cta
+  const mapEl = document.getElementById('mapsCtaMap');
+  if (mapEl && typeof L !== 'undefined') {
+    const map = L.map('mapsCtaMap', {
+      zoomControl: false, scrollWheelZoom: false, dragging: false,
+      touchZoom: false, doubleClickZoom: false, boxZoom: false,
+      keyboard: false, attributionControl: false
+    }).setView([46.2324659, -119.1176369], 16);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    L.circleMarker([46.2324659, -119.1176369], {
+      radius: 8, fillColor: '#f97316', color: '#fff',
+      weight: 2.5, opacity: 1, fillOpacity: 1
+    }).addTo(map);
+  }
 
   // Form
   const form = document.getElementById('contactForm');
