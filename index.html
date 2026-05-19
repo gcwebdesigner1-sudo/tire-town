@@ -420,6 +420,19 @@
   }
   .directions-btn:hover { background: var(--orange-dark); transform: translateY(-1px); }
 
+  .maps-cta {
+    display: flex; align-items: center; gap: 16px;
+    margin-top: 28px; padding: 20px 24px;
+    background: var(--carbon); color: var(--cream);
+    border-radius: 16px; font-size: 15px;
+    transition: all 0.3s;
+  }
+  .maps-cta:hover { background: var(--orange); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(249,115,22,0.25); }
+  .maps-cta > svg:first-child { flex-shrink: 0; opacity: 0.9; }
+  .maps-cta span { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+  .maps-cta strong { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500; }
+  .maps-cta small { font-size: 13px; opacity: 0.65; }
+
   .contact-form {
     background: var(--cream); padding: 40px;
     border-radius: 20px; border: 1px solid rgba(17,24,39,0.06);
@@ -501,18 +514,18 @@
   .hero-visual   { animation: fadeUp 0.9s ease-out 0.45s both; }
 
   .scroll-anim {
-    opacity: 0; transform: translateY(32px);
-    transition: opacity 0.65s ease-out, transform 0.65s cubic-bezier(.16,1,.3,1);
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.35s ease-out, transform 0.35s cubic-bezier(.16,1,.3,1);
   }
   .scroll-anim.in-view { opacity: 1; transform: none; }
-  .scroll-anim.delay-1 { transition-delay: 0.1s; }
-  .scroll-anim.delay-2 { transition-delay: 0.2s; }
-  .scroll-anim.delay-3 { transition-delay: 0.3s; }
-  .scroll-anim.delay-4 { transition-delay: 0.4s; }
-  .scroll-anim.delay-5 { transition-delay: 0.5s; }
-  .scroll-anim.from-left { transform: translateX(-32px); }
+  .scroll-anim.delay-1 { transition-delay: 0.05s; }
+  .scroll-anim.delay-2 { transition-delay: 0.1s; }
+  .scroll-anim.delay-3 { transition-delay: 0.15s; }
+  .scroll-anim.delay-4 { transition-delay: 0.2s; }
+  .scroll-anim.delay-5 { transition-delay: 0.25s; }
+  .scroll-anim.from-left { transform: translateX(-20px); }
   .scroll-anim.from-left.in-view { transform: none; }
-  .scroll-anim.from-right { transform: translateX(32px); }
+  .scroll-anim.from-right { transform: translateX(20px); }
   .scroll-anim.from-right.in-view { transform: none; }
 
   @media (prefers-reduced-motion: reduce) {
@@ -592,7 +605,7 @@
       <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=900&q=80" alt="Auto mechanic working on a vehicle" loading="eager" />
     </div>
     <div class="hero-img-small">
-      <img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=400&q=80" alt="Tire service" loading="eager" />
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Tire service" loading="eager" />
     </div>
     <div class="hero-badge">
       <div class="big">4.4★</div>
@@ -818,6 +831,15 @@
           <div class="value">Mon–Fri, 9 AM – 6 PM</div>
         </div>
       </div>
+
+      <a href="https://www.google.com/maps/search/?api=1&query=Tire+Town+Auto+Repair+404+N+20th+Ave+Pasco+WA+99301" target="_blank" rel="noopener" class="maps-cta scroll-anim" aria-label="Open Tire Town location in Google Maps">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>
+          <strong>Open in Google Maps</strong>
+          <small>404 N 20th Ave · Pasco, WA 99301</small>
+        </span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
     </div>
 
     <div class="contact-form scroll-anim">
@@ -933,7 +955,7 @@
   // Scroll animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); } });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.05 });
   document.querySelectorAll('.scroll-anim').forEach(el => observer.observe(el));
 
   // Form
