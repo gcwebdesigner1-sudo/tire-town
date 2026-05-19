@@ -501,10 +501,19 @@
   .hero-visual   { animation: fadeUp 0.9s ease-out 0.45s both; }
 
   .scroll-anim {
-    opacity: 0; transform: translateY(22px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.65s ease-out, transform 0.65s cubic-bezier(.16,1,.3,1);
   }
   .scroll-anim.in-view { opacity: 1; transform: none; }
+  .scroll-anim.delay-1 { transition-delay: 0.1s; }
+  .scroll-anim.delay-2 { transition-delay: 0.2s; }
+  .scroll-anim.delay-3 { transition-delay: 0.3s; }
+  .scroll-anim.delay-4 { transition-delay: 0.4s; }
+  .scroll-anim.delay-5 { transition-delay: 0.5s; }
+  .scroll-anim.from-left { transform: translateX(-32px); }
+  .scroll-anim.from-left.in-view { transform: none; }
+  .scroll-anim.from-right { transform: translateX(32px); }
+  .scroll-anim.from-right.in-view { transform: none; }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -610,56 +619,56 @@
   <p class="section-lead scroll-anim">We work on all makes and models. Whatever your vehicle needs, we'll give you an honest diagnosis and a fair quote before we touch anything.</p>
 
   <div class="services-grid">
-    <div class="service-card scroll-anim">
+    <div class="service-card scroll-anim delay-1">
       <div class="service-icon">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
       </div>
       <h3>Tire Services</h3>
       <p>New tire installation, rotation, balancing, flat repair, and TPMS service for all vehicle types.</p>
     </div>
-    <div class="service-card scroll-anim">
+    <div class="service-card scroll-anim delay-2">
       <div class="service-icon">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
       </div>
       <h3>Engine Repair</h3>
       <p>Full engine diagnostics, motor replacement, intake manifold, head gaskets, and everything in between.</p>
     </div>
-    <div class="service-card scroll-anim">
+    <div class="service-card scroll-anim delay-3">
       <div class="service-icon">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       </div>
       <h3>Brake Service</h3>
       <p>Brake inspection, pad and rotor replacement, caliper service, and brake fluid flush to keep you stopping safely.</p>
     </div>
-    <div class="service-card scroll-anim">
+    <div class="service-card scroll-anim delay-1">
       <div class="service-icon">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="4"/><path d="M2 12c0 2.21 4.48 4 10 4s10-1.79 10-4"/><path d="M2 8c0 2.21 4.48 4 10 4s10-1.79 10-4"/></svg>
       </div>
       <h3>Oil Changes</h3>
       <p>Conventional, synthetic blend, or full synthetic oil changes with a multi-point inspection included.</p>
     </div>
-    <div class="service-card scroll-anim">
+    <div class="service-card scroll-anim delay-2">
       <div class="service-icon">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
       </div>
       <h3>Transmission</h3>
       <p>Transmission fluid service, filter replacement, and diagnostic work to keep your drivetrain running smooth.</p>
     </div>
-    <div class="service-card scroll-anim">
+    <div class="service-card scroll-anim delay-3">
       <div class="service-icon">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </div>
       <h3>Diagnostics</h3>
       <p>Check engine light, warning indicators, and full computer diagnostics to find the root cause — not just the symptom.</p>
     </div>
-    <div class="service-card scroll-anim">
+    <div class="service-card scroll-anim delay-1">
       <div class="service-icon">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
       </div>
       <h3>Suspension & Steering</h3>
       <p>Shocks, struts, ball joints, tie rods, and wheel alignments to restore handling and ride comfort.</p>
     </div>
-    <div class="service-card scroll-anim">
+    <div class="service-card scroll-anim delay-2">
       <div class="service-icon">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
       </div>
@@ -672,12 +681,12 @@
 <!-- ── About ── -->
 <section id="about" aria-labelledby="aboutHeading">
   <div class="about-grid">
-    <div class="about-visual scroll-anim">
-      <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&q=80" alt="Tire Town Auto Repair shop" loading="lazy" />
+    <div class="about-visual scroll-anim from-left">
+      <img src="https://images.unsplash.com/photo-1632823471565-1ecdf5c6da22?w=800&q=80" alt="Mechanic working under a car on a lift" loading="lazy" />
       <div class="about-quote">"They helped me come up with an affordable plan and got my car back on the road. Amazing team." — Ariana E.</div>
     </div>
     <div class="about-text">
-      <p class="section-label scroll-anim">About Us</p>
+      <p class="section-label scroll-anim from-right">About Us</p>
       <h2 class="section-title scroll-anim" id="aboutHeading">Pasco's <em>neighborhood</em> auto shop.</h2>
       <p class="scroll-anim">Miguel and his team have been serving the Tri-Cities area for years. We're not a chain — we're your neighbors, and we treat every car like it belongs to a member of our family.</p>
       <p class="scroll-anim">Whether you're a first-time car owner dealing with a breakdown or a fleet manager keeping vehicles on the road, we'll work with you to find an affordable solution and keep you informed every step of the way.</p>
@@ -707,7 +716,7 @@
   <p class="section-lead scroll-anim">4.4 stars across 38 reviews on Google. Real people, real results.</p>
 
   <div class="reviews-grid">
-    <div class="review-card review-card-wide scroll-anim">
+    <div class="review-card review-card-wide scroll-anim delay-1">
       <div class="review-stars">★★★★★</div>
       <p class="review-text">"I'm a full-time pre-med student and a first-time mom, so when my car gave out and I found out I needed a new motor, I was stressed. Miguel and his team were amazing — they helped me come up with an affordable plan, found a motor, and got me back on the road."</p>
       <div class="review-author">
@@ -718,7 +727,7 @@
         </div>
       </div>
     </div>
-    <div class="review-card scroll-anim">
+    <div class="review-card scroll-anim delay-2">
       <div class="review-stars">★★★★★</div>
       <p class="review-text">"Fair rates and honest work. Brought my truck in for a brake job and they were upfront about what needed to be done. No surprises on the bill."</p>
       <div class="review-author">
@@ -729,7 +738,7 @@
         </div>
       </div>
     </div>
-    <div class="review-card scroll-anim">
+    <div class="review-card scroll-anim delay-3">
       <div class="review-stars">★★★★★</div>
       <p class="review-text">"Quick turnaround on my oil change and they flagged a few things I should keep an eye on without pressuring me. That kind of honesty keeps me coming back."</p>
       <div class="review-author">
@@ -750,17 +759,17 @@
   <p class="section-lead scroll-anim">No surprises. No runaround. Just honest auto repair from people who know cars.</p>
 
   <div class="process-grid">
-    <div class="step scroll-anim">
+    <div class="step scroll-anim delay-1">
       <span class="step-num"></span>
       <h3>Call or Drop In</h3>
       <p>Give us a call at (509) 792-1239 or fill out our form. Walk-ins are welcome during business hours.</p>
     </div>
-    <div class="step scroll-anim">
+    <div class="step scroll-anim delay-2">
       <span class="step-num"></span>
       <h3>Honest Diagnosis</h3>
       <p>We inspect your vehicle and tell you exactly what's wrong — in plain language, no jargon, no guesswork.</p>
     </div>
-    <div class="step scroll-anim">
+    <div class="step scroll-anim delay-3">
       <span class="step-num"></span>
       <h3>Clear Quote</h3>
       <p>You get a fair, upfront price before we start. No hidden fees. You decide whether to proceed.</p>
@@ -793,7 +802,7 @@
         <div>
           <div class="label">Address</div>
           <div class="value">404 N 20th Ave, Pasco, WA 99301</div>
-          <a href="https://www.google.com/maps/dir/?api=1&destination=404+N+20th+Ave+Pasco+WA+99301" target="_blank" rel="noopener" class="directions-btn" aria-label="Get directions to Tire Town on Google Maps">
+          <a href="https://www.google.com/maps/search/?api=1&query=Tire+Town+Auto+Repair+404+N+20th+Ave+Pasco+WA+99301" target="_blank" rel="noopener" class="directions-btn" aria-label="Get directions to Tire Town on Google Maps">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
             Get Directions
           </a>
