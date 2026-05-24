@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Tire Town icon">
+  <title>Tire Town &amp; Auto Repair</title>
+  <!-- Orange circle background -->
+  <circle cx="32" cy="32" r="32" fill="#f97316"/>
+  <!-- White tire ring -->
+  <circle cx="32" cy="32" r="24.8" fill="none" stroke="white" stroke-width="5.6"/>
+  <!-- 5 white spokes (hub r=5.6 → ring inner r=22) -->
+  <g stroke="white" stroke-width="4" stroke-linecap="round">
+    <!-- 0° (top) -->
+    <line x1="32" y1="26.4" x2="32" y2="10"/>
+    <!-- 72° (upper-right) -->
+    <line x1="37.33" y1="30.27" x2="52.92" y2="25.20"/>
+    <!-- 144° (lower-right) -->
+    <line x1="35.29" y1="36.53" x2="44.93" y2="49.80"/>
+    <!-- 216° (lower-left) -->
+    <line x1="28.71" y1="36.53" x2="19.07" y2="49.80"/>
+    <!-- 288° (upper-left) -->
+    <line x1="26.67" y1="30.27" x2="11.08" y2="25.20"/>
+  </g>
+  <!-- White center hub -->
+  <circle cx="32" cy="32" r="5.6" fill="white"/>
+</svg>
