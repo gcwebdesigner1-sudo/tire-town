@@ -260,6 +260,8 @@ nav.scrolled {
 
 @media (max-width: 768px) {
   .hamburger { display: flex; }
+  .logo { font-size: 17px; white-space: nowrap; gap: 8px; }
+  .logo-img { width: 30px; height: 30px; }
   .nav-links {
     position: fixed;
     top: 63px; left: 0; right: 0;
@@ -1281,7 +1283,7 @@ footer li a:hover { opacity: 1; color: var(--orange); }
 <section class="about" id="about" aria-labelledby="aboutHeading">
   <div class="about-grid">
     <div class="about-visual reveal zoom">
-      <img src="https://images.unsplash.com/photo-1632823471565-1ecdf5c6da22?w=800&q=80" alt="Mechanic working under a car on a lift" loading="lazy" />
+      <img src="https://images.unsplash.com/photo-1615906655593-ad0386982a0f?w=800&q=80" alt="Mechanic inspecting a vehicle in the shop" loading="lazy" />
       <div class="about-quote">"They helped me come up with an affordable plan and got my car back on the road. Amazing team." — Ariana E.</div>
     </div>
     <div class="about-text">
@@ -1529,16 +1531,8 @@ footer li a:hover { opacity: 1; color: var(--orange); }
     return;
   }
 
-  if (sessionStorage.getItem('tt-intro')) {
-    intro.remove();
-    makeReady();
-    return;
-  }
-
-  /* First visit — play the animation */
   var exitTimer = setTimeout(function () {
     intro.classList.add('is-exiting');
-    sessionStorage.setItem('tt-intro', '1');
   }, 1950);
 
   intro.addEventListener('animationend', function handler(e) {
