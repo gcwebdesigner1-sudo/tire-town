@@ -678,6 +678,26 @@ section { padding: 100px 6vw; position: relative; }
   line-height: 1.75;
   max-width: 58ch;
 }
+.about-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px 0;
+}
+.about-bullets li {
+  font-size: 17px;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  padding-left: 20px;
+  position: relative;
+  max-width: 58ch;
+}
+.about-bullets li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--red);
+  font-weight: 700;
+}
 .about-stats {
   display: flex;
   gap: 40px;
@@ -1289,9 +1309,13 @@ footer li a:hover { opacity: 1; color: var(--orange); }
     <div class="about-text">
       <p class="section-label reveal right">About Us</p>
       <h2 class="section-title reveal up" id="aboutHeading">Pasco's <em>neighborhood</em> auto shop.</h2>
-      <p class="reveal up d1">Miguel and his team have been serving the Tri-Cities area for years. We're not a chain — we're your neighbors, and we treat every car like it belongs to a member of our family.</p>
+      <p class="reveal up d1">Miguel and his team have been treating customers like neighbors for over 20 years. We're not a chain — we're your neighbors, and we treat every car like it belongs to a member of our family.</p>
       <p class="reveal up d2">Whether you're a first-time car owner dealing with a breakdown or a fleet manager keeping vehicles on the road, we'll work with you to find an affordable solution and keep you informed every step of the way.</p>
-      <p class="reveal up d3">We work on all makes and models — domestic, foreign, trucks, SUVs. If it rolls in, we can fix it.</p>
+      <ul class="about-bullets reveal up d3">
+        <li>4.4 Google rating</li>
+        <li>38+ reviews</li>
+        <li>All makes &amp; models</li>
+      </ul>
       <div class="about-stats reveal up d4">
         <div class="stat">
           <div class="num" data-count="4.4" data-suffix="★">4.4★</div>
@@ -1304,6 +1328,10 @@ footer li a:hover { opacity: 1; color: var(--orange); }
         <div class="stat">
           <div class="num">All</div>
           <div class="label">Makes &amp; Models</div>
+        </div>
+        <div class="stat">
+          <div class="num">20+</div>
+          <div class="label">Years of Service</div>
         </div>
       </div>
     </div>
