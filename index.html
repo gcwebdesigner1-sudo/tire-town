@@ -1462,7 +1462,11 @@ footer li a:hover { opacity: 1; color: var(--orange); }
       <div class="form-success" id="formSuccess" role="alert">
         ✓ Message sent! We'll be in touch soon.
       </div>
-      <form id="contactForm" action="https://formspree.io/f/REPLACE_ME" method="POST" novalidate>
+      <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_KEY" />
+        <input type="hidden" name="subject" value="New Quote Request — Tire Town & Auto Repair" />
+        <input type="hidden" name="from_name" value="Tire Town Website" />
+        <input type="checkbox" name="botcheck" style="display:none" />
         <div class="form-row">
           <div class="form-group">
             <label for="name">Your Name</label>
@@ -1678,7 +1682,8 @@ form.addEventListener('submit', async function (e) {
       body: new FormData(form),
       headers: { Accept: 'application/json' }
     });
-    if (res.ok) {
+    var data = await res.json();
+    if (data.success) {
       successMsg.classList.add('show');
       form.reset();
       successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
